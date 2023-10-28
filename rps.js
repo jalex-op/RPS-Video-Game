@@ -56,6 +56,8 @@ console.log('User picked', usrChoice);
 
 // Game logic
 // compare the string from the computer's choice to the string of the user's choice
+//
+// need to add a loop here to count the results of wins/losses, and go until set is over (set = bo5)
 
 function rps(computerChoice, usrChoice) {
     let rpsResult = '';
