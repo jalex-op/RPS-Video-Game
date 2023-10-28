@@ -24,9 +24,10 @@ function getComputerChoice(min, max) {
     return computerChoice;
 }
 
-let computerChoice = getComputerChoice(1, 3);
+// let computerChoice = getComputerChoice(1, 3);
 // console.log('AI picked:', computerChoice);
-let computerChoiceWord = getComputerChoice(1, 3).toLowerCase();
+let computerChoice = getComputerChoice(1, 3).toLowerCase();
+console.log('AI picked:', computerChoice);
 
 // 
 // gets the user's choice
@@ -48,7 +49,7 @@ function getUsrChoice() {
     return usrChoice;
 }
 const usrChoice = getUsrChoice();
-console.log(usrChoice);
+console.log('User picked', usrChoice);
 
 
 
@@ -92,13 +93,25 @@ function rps(computerChoice, usrChoice) {
 
 }
 
-const result = rps();
-console.log(rps);
+rps(computerChoice, usrChoice);
+
+
+//
+// Condensed method to the rps function. 
+//
+// function rps(computerChoice, usrChoice) {
+//     const outcomes = {
+//         'rock': {'rock': 'Tie game!', 'paper': 'You lost!', 'scissors': 'You won!'},
+//         'paper': {'rock': 'You won!', 'paper': 'Tie game!', 'scissors': 'You lost!'},
+//         'scissors': {'rock': 'You lost!', 'paper': 'You won!', 'scissors': 'Tie game!'}
+//     };
+
+//     const result = outcomes[usrChoice][computerChoice];
+//     alert(`You picked ${usrChoice}. Computer picked ${computerChoice}. ${result}`);
+// }
 
 
 
 
 
-
-// convert the prompt string into something (number?) that can be useable for the rest of the script
 
