@@ -58,6 +58,7 @@ console.log('User picked', usrChoice);
 // compare the string from the computer's choice to the string of the user's choice
 
 function rps(computerChoice, usrChoice) {
+    let rpsResult = '';
 
     if (computerChoice === 'rock' && usrChoice === 'paper') {
         alert('You picked paper. Computer picked rock. You won!');
@@ -89,11 +90,12 @@ function rps(computerChoice, usrChoice) {
         alert('You picked scissors. Computer picked scissors. Tie game!');
     }
 
-    return;
+    return rpsResult;
 
 }
 
-rps(computerChoice, usrChoice);
+const rpsResult = rps(computerChoice, usrChoice);
+
 
 
 //
@@ -111,6 +113,31 @@ rps(computerChoice, usrChoice);
 // }
 
 
+
+
+//      another more elegant rps solution
+//
+// function rps(computerChoice, usrChoice) {
+//     let result = '';
+
+//     if (computerChoice === usrChoice) {
+//         result = 'tie';
+//     } else if (
+//         (computerChoice === 'rock' && usrChoice === 'scissors') ||
+//         (computerChoice === 'scissors' && usrChoice === 'paper') ||
+//         (computerChoice === 'paper' && usrChoice === 'rock')
+//     ) {
+//         result = 'lose';
+//     } else {
+//         result = 'win';
+//     }
+
+//     alert(`You picked ${usrChoice}. Computer picked ${computerChoice}. ${result.charAt(0).toUpperCase() + result.slice(1)} game!`);
+//     return result;
+// }
+
+// const result = rps(computerChoice, usrChoice);
+// console.log(result);
 
 
 
