@@ -1,16 +1,6 @@
-// -----------------------------------------------------------------------------------------------------------
-// a rock-paper-scissors game, where a user inputs their choice and plays against a computer
-//
-//
-// ------------------------------------------------------------------------------------------------------------
-
-// function to get the computer's random choice
-
 function getComputerChoice(min, max) {
-
     let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     let computerChoice;
-
     if (randomNumber === 1) {
         computerChoice = 'Rock';
     }
@@ -20,127 +10,68 @@ function getComputerChoice(min, max) {
     else if (randomNumber === 3) {
         computerChoice = 'Scissors';
     }
-
-    return computerChoice;
+    return computerChoice.toLowerCase(); // Modification: convert to lowercase
 }
 
+// This section is unnecessary as you're getting the computer choice again in the playGame function
 // let computerChoice = getComputerChoice(1, 3);
 // console.log('AI picked:', computerChoice);
-let computerChoice = getComputerChoice(1, 3).toLowerCase();
-console.log('AI picked:', computerChoice);
-
-// 
-// gets the user's choice
 
 function getUsrChoice() {
-    let usrChoice;              // initializing usrChoice
-    let validInput = false;     // init validInput
-    
+    let usrChoice;
+    let validInput = false;
     while (!validInput) {
-        usrChoice = prompt('Enter a choice: Rock, Paper, or Scissors').toLowerCase(); // toLowerCase() to convert all strings to lower case, so capitalization doesn't matter
-    
-        if (usrChoice === 'rock' || usrChoice === 'paper' || usrChoice === 'scissors') {   // forces only rock paper or scissors to be inputs (regardless of capitalizations)
+        usrChoice = prompt('Enter a choice: Rock, Paper, or Scissors. (The first person to 5 wins, wins the set!').toLowerCase();
+        if (usrChoice === 'rock' || usrChoice === 'paper' || usrChoice === 'scissors') {
             validInput = true;
-        }
-        else {
+        } else {
             alert('Not a valid input. Check your spelling!')
         }
-     }
+    }
     return usrChoice;
 }
-const usrChoice = getUsrChoice();
-console.log('User picked', usrChoice);
 
-
-
-
-// Game logic
-// compare the string from the computer's choice to the string of the user's choice
-//
-// need to add a loop here to count the results of wins/losses, and go until set is over (set = bo5)
+// This section is unnecessary as you're getting the user choice again in the playGame function
+// const usrChoice = getUsrChoice();
+// console.log('User picked', usrChoice);
 
 function rps(computerChoice, usrChoice) {
-    let rpsResult = '';
-
-    if (computerChoice === 'rock' && usrChoice === 'paper') {
-        alert('You picked paper. Computer picked rock. You won!');
+    let result;
+    if (computerChoice === usrChoice) {
+        result = 'It\'s a tie! You both chose ' + usrChoice + '.';
+    } else if (
+        (computerChoice === 'rock' && usrChoice === 'scissors') ||
+        (computerChoice === 'paper' && usrChoice === 'rock') ||
+        (computerChoice === 'scissors' && usrChoice === 'paper')
+    ) {
+        result = 'You lose! ' + usrChoice + ' is beaten by ' + computerChoice + '.';
+    } else {
+        result = 'You win! ' + usrChoice + ' beats ' + computerChoice + '.';
     }
-    else if (computerChoice === 'rock' && usrChoice === 'rock') {
-        alert('You picked rock. Computer picked rock. Tie game!');
-    }
-    else if (computerChoice === 'rock' && usrChoice === 'scissors') {
-        alert('You picked scissors. Computer picked rock. You lost!');
-    }
-
-    else if (computerChoice === 'paper' && usrChoice === 'rock') {
-        alert('You picked rock. Computer picked paper. You lost!');
-    }
-    else if (computerChoice === 'paper' && usrChoice === 'paper') {
-        alert('You picked paper. Computer picked paper. Tie game!');
-    }
-    else if (computerChoice === 'paper' && usrChoice === 'scissors') {
-        alert('You picked scissors. Computer picked paper. You won!');
-    }
-
-    else if (computerChoice === 'scissors' && usrChoice === 'rock') {
-        alert('You picked rock. Computer picked scissors. You won!');
-    }
-    else if (computerChoice === 'scissors' && usrChoice === 'paper') {
-        alert('You picked paper. Computer picked scissors. You lost!');
-    }
-    else if (computerChoice === 'scissors' && usrChoice === 'scissors') {
-        alert('You picked scissors. Computer picked scissors. Tie game!');
-    }
-
-    return rpsResult;
-
+    alert('You picked: ' + usrChoice + '. Computer picked: ' + computerChoice + '. ' + result); 
 }
 
-const rpsResult = rps(computerChoice, usrChoice);
+function playGame() {
+    let userScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const computerChoice = getComputerChoice(1, 3);
+        const usrChoice = getUsrChoice();
+        const result = rps(computerChoice, usrChoice);
+        if (result.includes('win')) {
+            userScore++;
+        } else if (result.includes('lose')) {
+            computerScore++;
+        }
+        alert('Current Score - You: ' + userScore + ', Computer: ' + computerScore); 
+    }
+    if (userScore > computerScore) {
+        alert('You won the best of 5 series ' + userScore + ' to ' + computerScore + '!');
+    } else if (userScore < computerScore) {
+        alert('OH NO... you lost the best of 5 series ' + userScore + ' to ' + computerScore + '!');
+    } else {
+        alert('The best of 5 series is a tie! ' + userScore + ' to ' + computerScore + '!');
+    }
+}
 
-
-
-//
-// Condensed method to the rps function. 
-//
-// function rps(computerChoice, usrChoice) {
-//     const outcomes = {
-//         'rock': {'rock': 'Tie game!', 'paper': 'You lost!', 'scissors': 'You won!'},
-//         'paper': {'rock': 'You won!', 'paper': 'Tie game!', 'scissors': 'You lost!'},
-//         'scissors': {'rock': 'You lost!', 'paper': 'You won!', 'scissors': 'Tie game!'}
-//     };
-
-//     const result = outcomes[usrChoice][computerChoice];
-//     alert(`You picked ${usrChoice}. Computer picked ${computerChoice}. ${result}`);
-// }
-
-
-
-
-//      another more elegant rps solution
-//
-// function rps(computerChoice, usrChoice) {
-//     let result = '';
-
-//     if (computerChoice === usrChoice) {
-//         result = 'tie';
-//     } else if (
-//         (computerChoice === 'rock' && usrChoice === 'scissors') ||
-//         (computerChoice === 'scissors' && usrChoice === 'paper') ||
-//         (computerChoice === 'paper' && usrChoice === 'rock')
-//     ) {
-//         result = 'lose';
-//     } else {
-//         result = 'win';
-//     }
-
-//     alert(`You picked ${usrChoice}. Computer picked ${computerChoice}. ${result.charAt(0).toUpperCase() + result.slice(1)} game!`);
-//     return result;
-// }
-
-// const result = rps(computerChoice, usrChoice);
-// console.log(result);
-
-
-
-
+playGame();
