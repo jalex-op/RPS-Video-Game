@@ -49,7 +49,7 @@ function rps(computerChoice, usrChoice) {
         result = 'You win! ' + usrChoice + ' beats ' + computerChoice + '.';
     }
     alert('You picked: ' + usrChoice + '. Computer picked: ' + computerChoice + '. ' + result); 
-    return result; // Added line to return the result
+    return result; 
 }
 
 function playGame() {
