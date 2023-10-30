@@ -21,7 +21,7 @@ function getUsrChoice() {
     let usrChoice;
     let validInput = false;
     while (!validInput) {
-        usrChoice = prompt('Enter a choice: Rock, Paper, or Scissors. (The first person to 5 wins, wins the set!').toLowerCase();
+        usrChoice = prompt('Enter a choice: Rock, Paper, or Scissors. (The first person to  wins, wins the set!').toLowerCase();
         if (usrChoice === 'rock' || usrChoice === 'paper' || usrChoice === 'scissors') {
             validInput = true;
         } else {
@@ -49,6 +49,7 @@ function rps(computerChoice, usrChoice) {
         result = 'You win! ' + usrChoice + ' beats ' + computerChoice + '.';
     }
     alert('You picked: ' + usrChoice + '. Computer picked: ' + computerChoice + '. ' + result); 
+    return result; // Added line to return the result
 }
 
 function playGame() {
@@ -58,9 +59,9 @@ function playGame() {
         const computerChoice = getComputerChoice(1, 3);
         const usrChoice = getUsrChoice();
         const result = rps(computerChoice, usrChoice);
-        if (result.includes('win')) {
+        if (result === 'You win! ' + usrChoice + ' beats ' + computerChoice + '.') {
             userScore++;
-        } else if (result.includes('lose')) {
+        } else if (result === 'You lose! ' + usrChoice + ' is beaten by ' + computerChoice + '.') {
             computerScore++;
         }
         alert('Current Score - You: ' + userScore + ', Computer: ' + computerScore); 
