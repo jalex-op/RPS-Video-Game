@@ -76,8 +76,8 @@ body {
   }
 
 .choiceImage {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     border: 5px solid #000;
