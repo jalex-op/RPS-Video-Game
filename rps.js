@@ -83,17 +83,21 @@ function playRound(userChoice) {
     userChoiceImage.src = `./images/${userChoice}.png`; 
     computerChoiceImage.src = `./images/${computerChoice}.png`; 
     
-    // Apply fade-in animation
-    userChoiceImage.classList.remove('show');
-    computerChoiceImage.classList.remove('show');
-    void userChoiceImage.offsetWidth; // Trigger reflow to restart animation
-    void computerChoiceImage.offsetWidth; // Trigger reflow to restart animation
-    userChoiceImage.classList.add('show');
-    computerChoiceImage.classList.add('show');
-  
+    // Restart fade-in animation
+    userChoiceImage.style.animation = 'none';
+    computerChoiceImage.style.animation = 'none';
     
+    // Trigger reflow
+    userChoiceImage.offsetHeight; // Trigger reflow
+    computerChoiceImage.offsetHeight; // Trigger reflow
     
+    // Re-apply animation
+    userChoiceImage.style.animation = null;
+    computerChoiceImage.style.animation = null;
+
+
     checkGameOver();
+
 }
 
 document.getElementById('rock').addEventListener('click', () => playRound('rock'));

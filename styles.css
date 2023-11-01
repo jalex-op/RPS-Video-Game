@@ -76,12 +76,21 @@ body {
   }
 
 .choiceImage {
-  width: 100px;
-  height: 100px;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    border: 5px solid #000;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -75px;
+    margin-bottom: 25px;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
 .choiceImage.show {
   visibility: visible;
