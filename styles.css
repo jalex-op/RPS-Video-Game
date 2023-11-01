@@ -89,4 +89,7 @@ body {
   border: 5px solid #000; /* Add a black border, 5px wide */
   border-radius: 50%;    /* Make the border circular */
   overflow: hidden;   
+  margin-top: -75px;
+  margin-bottom: 25px;
+
 }  
