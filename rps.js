@@ -76,6 +76,23 @@ function playRound(userChoice) {
     const result = rps(computerChoice, userChoice);
     roundsPlayed++;
     updateDisplay(result);
+    
+    // Update images
+    const userChoiceImage = document.getElementById('userChoiceImage');
+    const computerChoiceImage = document.getElementById('computerChoiceImage');
+    userChoiceImage.src = `./images/${userChoice}.png`; 
+    computerChoiceImage.src = `./images/${computerChoice}.png`; 
+    
+    // Apply fade-in animation
+    userChoiceImage.classList.remove('show');
+    computerChoiceImage.classList.remove('show');
+    void userChoiceImage.offsetWidth; // Trigger reflow to restart animation
+    void computerChoiceImage.offsetWidth; // Trigger reflow to restart animation
+    userChoiceImage.classList.add('show');
+    computerChoiceImage.classList.add('show');
+  
+    
+    
     checkGameOver();
 }
 

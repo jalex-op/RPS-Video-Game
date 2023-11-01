@@ -75,4 +75,18 @@ body {
     
   }
 
-  
+.choiceImage {
+  width: 100px;
+  height: 100px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.choiceImage.show {
+  visibility: visible;
+  opacity: 1;
+  border: 5px solid #000; /* Add a black border, 5px wide */
+  border-radius: 50%;    /* Make the border circular */
+  overflow: hidden;   
+}  
